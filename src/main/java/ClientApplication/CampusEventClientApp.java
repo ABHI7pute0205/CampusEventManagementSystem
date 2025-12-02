@@ -3,6 +3,7 @@ import java.util.*;
 
 import Exceptions.LoginAttemptsUserDefinedException;
 import Helper.AdminHelper;
+import Helper.AdminStudentOperationHelper;
 import Helper.ServiceHelper;
 import Model.AdminLoginModel;
 public class CampusEventClientApp {
@@ -11,8 +12,11 @@ public class CampusEventClientApp {
 		Scanner sc = new Scanner(System.in);
 		
 		do {
-			System.out.println("_____________________________________________");
 			System.out.println("1. Admin Login ");
+			System.out.println("2. Student Login ");
+			System.out.println("3. Exit \n");
+			
+			System.out.println("Enter Your Choice : ");
 			System.out.println("_____________________________________________");
 			
 			int ch = sc.nextInt();
@@ -31,11 +35,14 @@ public class CampusEventClientApp {
 					
 					boolean b = ServiceHelper.adminService.validateAdminLogin(model);
 					if(b) {
-						System.out.println("Admin Login SuccessFully..........");
+						System.out.println("_____________________________________________");
+						System.out.println("Admin Login SuccessFully..........\n");
 // here we write a seperate helper class which contains a static methods and we show other 
 // menue to the admin after successfully login | startWorking is a static method that's why
 // we call this method directly using the class name 
+						
 						AdminHelper.startWorking();
+						//AdminStudentOperationHelper.startStudentOperations();
 					}
 					else {
 						System.out.println("Admin Not Login Something Wrong please check userName Or Password");
@@ -49,12 +56,15 @@ public class CampusEventClientApp {
 				break;
 				
 			case 2:
+				System.out.println("Enter Email as UserName and Password to Login Student :");
+				String uname=sc.nextLine();
+				String password = sc.nextLine();
+				
+				
 				break;
 				
 			case 3:
-				break;
-				
-			case 8:
+				System.out.println("Thank you...");
 				System.exit(0);
 				break;
 				

@@ -35,7 +35,7 @@ public class DBInitialize {
 			conn = DriverManager.getConnection(url,uname,pass);
 			
 			if(conn != null) {
-				System.out.println("Database is Connected...............");
+				//System.out.println("Database is Connected");
 			}
 			else {
 				System.out.println("Database is NOT Connected Something Wrong...");

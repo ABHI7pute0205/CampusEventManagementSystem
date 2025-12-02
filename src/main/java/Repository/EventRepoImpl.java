@@ -115,7 +115,7 @@ public class EventRepoImpl extends DBInitialize implements EventRepo{
 			psmt.setDate(2, model.getEdate());
 			psmt.setString(3, model.getVenue());
 			psmt.setInt(4, model.getCapacity());
-			psmt.setString(5, model.getName());
+			psmt.setString(5, model.getOldName());
 			
 			int val = psmt.executeUpdate();
 			System.out.println("Value is : "+val);

@@ -15,4 +15,13 @@ public class EventModel {
 	private Date edate;
 	private String venue;
 	private int capacity;
+	private String oldName;
+
+//	public String getOldName() { 
+//		return oldName; 
+//	}
+//	public void setOldName(String oldName) {
+//		this.oldName = oldName; 
+//	}
+
 }
