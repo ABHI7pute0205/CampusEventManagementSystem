@@ -3,11 +3,14 @@ package Helper;
 import java.util.List;
 import java.util.Scanner;
 
+import DBConfiguration.DBInitialize;
 import Model.StudentModel;
+import pdfdownload.ReportDownloadHelper;
+import pdfdownload.StudentPdfDownload;
 
 public class StudentHelper {
 
-	public static void startStudentOperation() {
+	public static void startStudentOperation(){
 		boolean adminHome=true;
 		do {
 			Scanner sc = new Scanner(System.in);
@@ -15,11 +18,13 @@ public class StudentHelper {
 			
 			System.out.println("1. Add New Student");
 			System.out.println("2. View All Student");
-			System.out.println("3. Delete Event Using event ID");
+			System.out.println("3. Delete Student Using Student ID");
 			System.out.println("4. Update Student Details by Student Id");
 			System.out.println("5. Search Student by Department");
 			System.out.println("6. Search Student by Email ID");
-			System.out.println("7. Back To Admin Page\n");
+			System.out.println("7. Download Student Report :");
+			System.out.println("8. Back To Admin Page\n");
+			
 			System.out.println("Enter Your Choice : ");
 			System.out.println("______________________________________");
 			
@@ -111,6 +116,7 @@ public class StudentHelper {
 				else {
 					System.out.println("Student NOT Updated Something Wrong......");
 				}
+				System.out.println("______________________________________");
 				break;
 				
 			case 5:
@@ -130,9 +136,21 @@ public class StudentHelper {
 				List<StudentModel> list2 = ServiceHelper.studentService.isSearchStudentByEmail(email);
 				list2.forEach((slist)->System.out.println(slist.getSid()+"\t\t"+slist.getSname()+"\t\t"+
 						slist.getEmail()+"\t\t"+slist.getContact()+"\t\t"+slist.getPassword()+"\t\t"+slist.getDept()));
-						System.out.println("______________________________________");
+				System.out.println("______________________________________");
 				break;
+				
 			case 7:
+				ReportDownloadHelper ref = new ReportDownloadHelper();
+				b = ref.studentReportDownload();
+				if(b) {
+					System.out.println("Student Report Download Success....\n");
+				}
+				else {
+					System.out.println("Student Report NOT Download Success....");
+				}
+				break;
+				
+			case 8:
 				adminHome=false;
 				break;
 			}

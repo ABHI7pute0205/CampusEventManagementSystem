@@ -1,0 +1,33 @@
+package Service;
+
+import java.util.List;
+
+import Model.EventModel;
+import Model.EventRegisterModel;
+import Model.StudentModel;
+import Repository.*;
+
+public class EventRegisterServiceImpl implements EventRegisterService{
+
+	EventRegisterRepo eventRegister = new EventRegisterRepoImpl();
+	@Override
+	public List<StudentModel> viewEventWiseStudentRegistrations(String eventName) {
+		// TODO Auto-generated method stub
+		return eventRegister.viewEventWiseStudentRegistrations(eventName);
+	}
+	@Override
+	public List<EventModel> viewStudentWiseEventRegistrations(int studentId) {
+		// TODO Auto-generated method stub
+		return eventRegister.viewStudentWiseEventRegistrations(studentId);
+//		List<EventModel> lst = eventRegister.viewStudentWiseEventRegistrations(studentNmae);
+
+		
+	}
+	@Override
+	public EventModel getEventCapacityDetails(int eventId) {
+		// TODO Auto-generated method stub
+		return eventRegister.getEventCapacityDetails(eventId);
+	}
+
+
+}

@@ -38,5 +38,4 @@ public class StudentServiceImpl implements StudentService{
 		// TODO Auto-generated method stub
 		return studentRepo.isSearchStudentByEmail(email);
 	}
-
 }

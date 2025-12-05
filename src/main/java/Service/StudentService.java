@@ -5,7 +5,7 @@ import java.util.List;
 import Model.StudentModel;
 
 public interface StudentService {
-
+	
 	public boolean isAddStudent(StudentModel model);
 	public List<StudentModel> viewAllStudents();
 	public boolean isDeleteStudentById(int eid);

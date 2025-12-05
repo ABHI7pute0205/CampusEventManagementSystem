@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import Model.*;
+import pdfdownload.ReportDownloadHelper;
 
 public class EventHelper {
 
@@ -17,7 +18,9 @@ public class EventHelper {
 			System.out.println("3. View Upcoming Events");
 			System.out.println("4. Delete Event Using event ID");
 			System.out.println("5. Update Event Details by Event Name");
-			System.out.println("6. Back to Admin Page :\n");
+			System.out.println("6. Download Event Report ");
+			System.out.println("7. Back to Admin Page :\n");
+			
 			System.out.println("Enter Your choice  :");
 			System.out.println("______________________________________");
 			int ch =sc.nextInt();
@@ -70,10 +73,10 @@ public class EventHelper {
 			case 3:
 //				System.out.println("View UpComming Events ");
 				List<EventModel> list1 = ServiceHelper.eventService.getUpComingEvents();
-				System.out.println("eid"+"\t"+"name"+"\t\t"+"edate"+"\t\t"+"venue"+"\t\t"+"capacity");
+				System.out.println("eid"+"\t\t\t"+"name"+"\t\t\t"+"edate"+"\t\t\t"+"venue"+"\t\t\t"+"capacity");
 				
-				list1.forEach((lst)->System.out.println(lst.getEid()+"\t"+lst.getName()+"\t"+
-						lst.getEdate()+"\t"+lst.getVenue()+"\t\t"+lst.getCapacity()));
+				list1.forEach((lst)->System.out.println(lst.getEid()+"\t\t\t"+lst.getName()+"\t\t\t"+
+						lst.getEdate()+"\t\t\t"+lst.getVenue()+"\t\t\t"+lst.getCapacity()));
 				System.out.println("______________________________________");
 				break;
 				
@@ -119,22 +122,34 @@ public class EventHelper {
 				EventModel eventModel = ServiceHelper.eventService.isUpdateEvent(emodel1);
 				if(eventModel != null) {
 					System.out.println("Event Details Updated SuccessFully............");
-					System.out.println(eventModel.getEid()+"\t\t"+eventModel.getName()+"\t\t"+
-							eventModel.getEdate()+"\t\t"+eventModel.getVenue()+"\t\t"+eventModel.getCapacity());
+					System.out.println(eventModel.getEid()+"\t\t\t"+eventModel.getName()+"\t\t\t"+
+							eventModel.getEdate()+"\t\t\t"+eventModel.getVenue()+"\t\t\t"+eventModel.getCapacity());
 				}
 				else {
 					System.out.println("Event Details NOT Updated Something Wrong ....");
 				}
-				
+				System.out.println("______________________________________");
 				break;
+				
 			case 6:
+//				from pdfDownload package  
+				ReportDownloadHelper ref = new ReportDownloadHelper();
+				b = ref.eventReportDownload();
+				if(b) {
+					System.out.println("Student Report Download Success....\n");
+				}
+				else {
+					System.out.println("Student Report NOT Download Success....");
+				}
+				break;
+				
+			case 7:
 				moveAdmin = false;
+				
 			break;
 				default:
 					System.out.println("Please Enter Valid Choice....");
-
 			}
-			
 		}while(moveAdmin==true);
 	}
 }
