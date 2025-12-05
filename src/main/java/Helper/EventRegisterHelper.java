@@ -20,6 +20,8 @@ public class EventRegisterHelper {
 			System.out.println("1. All Students of Specific Event");
 			System.out.println("2. All events Register by specific student : ");
 			System.out.println("3. Check Event Capacity: (Registered count < capacity)");
+			System.out.println("4. Update Registration change Student of any event");
+			System.out.println("5. Cancel Registration");
 			
 			System.out.println("7. Back to home Page\n");
 			System.out.println("Enter Your Choice : ");
@@ -83,7 +85,48 @@ public class EventRegisterHelper {
 				}
 				break;
 				
-//			case 4:
+			case 4:
+			    System.out.println("Enter Register id of which we want to change Student : ");
+			    int rid = sc.nextInt();
+
+			    System.out.println("Enter Event id which we want to Change for Student : ");
+			    int eid = sc.nextInt();
+
+			    System.out.println("Enter New Student id :  ");
+			    int sid = sc.nextInt();
+
+			    EventRegisterModel model1 = new EventRegisterModel();
+			    model1.setRid(rid); 
+			    model1.setEid(eid); 
+			    model1.setSid(sid); 
+			        
+			    EventRegisterModel eventModel = ServiceHelper.eventRegService.isUpdateStuddentEvent(model1);
+
+			    if(eventModel != null) {
+			        System.out.println("Registration Updated Successfully....");
+			    } else {
+			        System.out.println("Registration NOT Updated Something Wrong......");
+			    }
+			    System.out.println("______________________________________");
+			    break;
+
+				
+			case 5:
+			    System.out.println("Enter Registration ID to Cancel Registration : ");
+			    rid = sc.nextInt();
+
+			    boolean b = ServiceHelper.eventRegService.deleteRegistrationById(rid);
+
+			    if(b) {
+			        System.out.println("Registration Cancelled Successfully...");
+			    } else {
+			        System.out.println("Registration NOT Cancelled Some thing Wrong.....");
+			    }
+			    System.out.println("______________________________________");
+			    break;
+
+			    
+//			case 6:
 //			    System.out.println("Enter Event ID to Download Student Report :");
 //			    eventId = sc.nextInt();
 //

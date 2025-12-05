@@ -10,4 +10,6 @@ public interface EventRegisterRepo {
 	public List<StudentModel> viewEventWiseStudentRegistrations(String eventName);
 	public List<EventModel> viewStudentWiseEventRegistrations(int studentId);
 	public EventModel getEventCapacityDetails(int eventId);
+	public EventRegisterModel isUpdateStuddentEvent(EventRegisterModel model);
+	public boolean deleteRegistrationById(int rid);
 }

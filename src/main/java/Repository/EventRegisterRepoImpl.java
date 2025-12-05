@@ -99,4 +99,47 @@ public class EventRegisterRepoImpl extends DBInitialize implements EventRegister
 	        return null;
 	    }
 	}
+
+	@Override
+	public EventRegisterModel isUpdateStuddentEvent(EventRegisterModel model) {
+		try {
+			psmt=conn.prepareStatement("update registration set sid=? where eid=? and rid=?");
+			psmt.setInt(1, model.getSid());
+			psmt.setInt(2, model.getEid());
+			psmt.setInt(3, model.getRid());
+			
+			int val = psmt.executeUpdate();
+			if(val>0) {
+				return model;
+			}
+			else {
+				return null;
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Error is : "+e);
+		}
+		return null;
+	}
+
+	@Override
+	public boolean deleteRegistrationById(int rid) {
+		 try {
+		        psmt = conn.prepareStatement("delete from registration where rid=?");
+		        psmt.setInt(1, rid);
+
+		        int val = psmt.executeUpdate();
+		        if(val>0) {
+		        	return true;
+		        }
+		        else {
+		        	return false;
+		        }
+		    }
+		    catch(Exception e) {
+		        System.out.println("Error is : " + e);
+		        return false;
+		    }
+		    
+	}
 }
